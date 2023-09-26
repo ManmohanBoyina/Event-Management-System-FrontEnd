@@ -6,3 +6,6 @@ export default function Home() {
     </main>
   )
 }
+
+Home.Layout = "landing"
+Home.auth = false

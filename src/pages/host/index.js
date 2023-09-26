@@ -5,3 +5,5 @@ export default function Home(){
         </main>
     )
 }
+Home.auth = true
+Home.Layout = "Host"
