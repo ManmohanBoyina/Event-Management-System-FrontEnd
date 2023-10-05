@@ -29,8 +29,10 @@ const SignIn = () => {
     //routes autnenticated user to landing page
     useEffect(() => {
         console.log(userRole)
-        if (status === "authenticated" && userRole === "customer")
+        if (status === "authenticated" && userRole === "Customer")
             router.push('../index')
+        if (status === "authenticated" && userRole === "Host")
+            router.push("/host")
     }, [userRole])
 
 
