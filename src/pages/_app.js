@@ -29,7 +29,7 @@ export default function MyApp({ Component, pageProps: pageProps }) {
 
   const Layout = Component.Layout ? getLayout(Component.Layout) : getLayout();
   const Container = Component.auth ? Auth : Fragment;
-  const LayoutContainer = Layout.auth ? Auth : Fragment;
+  // const LayoutContainer = Layout.auth ? Auth : Fragment;
 
   return (
     <SessionProvider session={pageProps.session}>
@@ -42,7 +42,7 @@ export default function MyApp({ Component, pageProps: pageProps }) {
         autoHideDuration={4000}
         preventDuplicate
       >
-        <LayoutContainer>
+        {/* <LayoutContainer> */}
           <Layout {...Component.LayoutProps}>
             {loading ? (
               <Loading />
@@ -52,7 +52,7 @@ export default function MyApp({ Component, pageProps: pageProps }) {
               </Container>
             )}
           </Layout>
-        </LayoutContainer>
+        {/* </LayoutContainer> */}
       </SnackbarProvider>
     </SessionProvider>
   );
