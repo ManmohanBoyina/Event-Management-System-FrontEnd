@@ -4,5 +4,5 @@ const DefaultLayout = ({ children }) => {
   return <main>{children}</main>;
 };
 
-DefaultLayout.auth = true;
+// DefaultLayout.auth = true;  
 export default DefaultLayout;

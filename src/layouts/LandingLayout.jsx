@@ -4,5 +4,5 @@ const LandingLayout = ({ children }) => {
   return <main>{children}</main>;
 };
 
-LandingLayout.auth = false;
+// LandingLayout.auth = false;
 export default LandingLayout;
