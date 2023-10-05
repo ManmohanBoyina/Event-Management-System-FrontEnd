@@ -30,7 +30,7 @@ const SignIn = () => {
     useEffect(() => {
         console.log(userRole)
         if (status === "authenticated" && userRole === "Customer")
-            router.push('../index')
+            router.push('/')
         if (status === "authenticated" && userRole === "Host")
             router.push("/host")
     }, [userRole])

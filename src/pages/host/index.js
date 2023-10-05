@@ -1,7 +1,7 @@
 export default function Home(){
     return(
         <main>
-            Landing Page for Hosts
+            Home page for Hosts
         </main>
     )
 }
