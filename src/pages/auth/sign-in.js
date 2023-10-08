@@ -73,6 +73,10 @@ const SignIn = () => {
         }
     }
 
+    const sign_in_google = () =>{
+        
+    }
+
     return (
         <>
             <section>
@@ -98,6 +102,8 @@ const SignIn = () => {
                     </span>
                 </p>
             </section>
+
+            
         </>
     )
 }
