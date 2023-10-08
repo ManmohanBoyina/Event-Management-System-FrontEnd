@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google"
+
 
 import instance from "@/lib/axios";
 
@@ -39,6 +41,10 @@ const nextAuthOptions = (req, res) => {
 
        
         },
+      }),
+      GoogleProvider({
+        clientId: process.env.CLIENTID,
+        clientSecret: process.env.CLIENTSECRET
       }),
     ],
     callbacks: {
