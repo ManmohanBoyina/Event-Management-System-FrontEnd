@@ -8,7 +8,7 @@ import { SnackbarProvider } from "notistack";
 import Loading from "@/components/common/Loading"; //Shows a loader inbetween page renders
 import getLayout from "@/layouts"; //Gets the layout based on the page
 
-export default function MyApp({ Component, pageProps: pageProps }) {
+export default function MyApp({ Component, pageProps: pageProps, session }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 

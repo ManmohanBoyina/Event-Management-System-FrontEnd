@@ -68,9 +68,13 @@ const SignIn = () => {
             }
             else {
                 setErrorMsg('Login Failed');
-            }
+            }  
             errorRef.current.focus();
         }
+    }
+
+    const sign_in_google = () =>{
+        
     }
 
     return (
@@ -80,7 +84,7 @@ const SignIn = () => {
                 <p ref={errorRef} className={errorMsg ? "errormsg" : "offscreen"} aria-live="assertive">{errorMsg}</p>
 
                 {/* sign-in page below */}
-                <h1>Sign In</h1>
+                <h1>Customer Sign In</h1>
                 <form onSubmit={handleSubmit}>
 
                     <label htmlFor="email">Email:</label>
@@ -91,6 +95,11 @@ const SignIn = () => {
 
                     <button>Sign In</button>
                 </form>
+                <div>
+                    <button
+                    onClick={()=>{signIn('google',{role:"Customer"})}}
+                    >Sign in with google</button>
+                </div>
                 <p>
                     Don't have an account yet?<br />
                     <span className="line">
@@ -98,6 +107,8 @@ const SignIn = () => {
                     </span>
                 </p>
             </section>
+
+            
         </>
     )
 }
