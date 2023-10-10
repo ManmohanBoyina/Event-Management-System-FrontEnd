@@ -1,22 +1,22 @@
 import { useRef, useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 export default function Home() {
   const { status, data: session } = useSession();
   const [username, setUsername] = useState();
-  const router = useRouter()
+  const router = useRouter();
   const signInWithGoogle = async () => {
     await signIn("google");
   };
-  
 
   useEffect(() => {
+    console.log(session)
     if (session?.user?.username) setUsername(session.user.username);
   }, [session]);
 
   useEffect(() => {
     if (status === "authenticated") {
-      router.push("/"); // Redirect to the home page after successful authentication
+      // router.push("/"); // Redirect to the home page after successful authentication
     }
   }, [status, router]);
 
@@ -31,9 +31,8 @@ export default function Home() {
       ) : (
         <div>
           <button onClick={() => router.push("/auth/sign-in")}>Sign In</button>
-          {typeof window !== "undefined" && (
-            <button onClick={signInWithGoogle}>Sign In with Google</button>
-          )}
+          <button onClick={signInWithGoogle}>Sign In with Google</button>
+          
         </div>
       )}
     </main>
