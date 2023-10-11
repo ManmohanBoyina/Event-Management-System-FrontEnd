@@ -42,47 +42,45 @@ const nextAuthOptions = (req, res) => {
       GoogleProvider({
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
+        
       }),
     ],
     callbacks: {
-      // called after sucessful signin
-      signIn: async ({ user, profile, account, metadata }) => {
-        console.log(user, metadata);
-        if (account?.provider === "google") {
-          const googleAuthData = {
-            username: profile.name.replaceAll(" ", "_"),
-            email: profile.email,
-            // role: credentials?.role || "Host"
-          };
-          let signInResponse = null;
-          await instance
-            .post("/auth/oauth-sign-in", googleAuthData)
-            .then((response) => {
-              //Add Refresh Token to Cookie
-              const cookies = response.headers.get("set-cookie");
-              res.setHeader("Set-Cookie", cookies);
 
-              if (response.data.user) {
-                user = {
-                  ...response.data.user,
-                  accessToken: response.data.accessToken,
-                };
-                signInResponse = user;
-                return user;
-              } else {
-                return null;
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-              return null;
-            });
-          user.test = "test";
-          return true;
-        } else return true;
-      },
-      jwt: async ({ token, user }) => {
+      jwt: async ({ token, profile, account, user }) => {    
         if (user) {
+          //For OAuth
+          let userData = {}
+          if (account?.provider === "google") {
+            const googleAuthData = {
+              username: profile.name.replaceAll(" ", "_"),
+              email: profile.email,
+              // role: credentials?.role || "Host"
+            };
+            userData = await instance
+              .post("/auth/oauth-sign-in", googleAuthData)
+              .then((response) => {
+                //Add Refresh Token to Cookie
+                const cookies = response.headers.get("set-cookie");
+                res.setHeader("Set-Cookie", cookies);
+  
+                if (response.data.user) {
+                  user = {
+                    ...response.data.user,
+                    accessToken: response.data.accessToken,
+                  };
+                  return user;
+                } else {
+                  return {};
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                return {};
+              });
+          }
+
+          user = {...user,...userData}
           token.id = user.id;
           token.user = user;
         }
@@ -96,15 +94,10 @@ const nextAuthOptions = (req, res) => {
         return session;
       },
     },
-    // secret: process.env.JWT_SECRET,
     session: {
       // strategy: "jwt",
       maxAge: 1 * 24 * 60 * 60, // 1day
     },
-    // jwt: {
-    //   secret: process.env.JWT_SECRET,
-    //   encryption: true,
-    // },
   };
 };
 
