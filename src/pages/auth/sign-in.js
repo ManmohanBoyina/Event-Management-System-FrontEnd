@@ -49,11 +49,15 @@ const SignIn = () => {
         setPassword('');
     }
 
+    const sign_in_google = () =>{
+        
+    }
+
     return (
         <>
             <section>
                 {/* sign-in page below */}
-                <h1>Sign In</h1>
+                <h1>Customer Sign In</h1>
                 <form onSubmit={handleSubmit}>
 
                     <label htmlFor="email">Email: </label>
@@ -64,6 +68,11 @@ const SignIn = () => {
 
                     <button>Sign In</button>
                 </form>
+                <div>
+                    <button
+                    onClick={()=>{signIn('google',{role:"Customer"})}}
+                    >Sign in with google</button>
+                </div>
                 <p>
                     Don't have an account yet?<br />
                     <span className="line">
@@ -71,6 +80,8 @@ const SignIn = () => {
                     </span>
                 </p>
             </section>
+
+            
         </>
     )
 }

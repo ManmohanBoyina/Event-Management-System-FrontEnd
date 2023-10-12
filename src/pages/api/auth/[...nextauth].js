@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 import instance from "@/lib/axios";
 
@@ -36,15 +37,50 @@ const nextAuthOptions = (req, res) => {
             });
 
           return signInResponse;
-
-       
         },
+      }),
+      GoogleProvider({
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        
       }),
     ],
     callbacks: {
-      // called after sucessful signin
-      jwt: async ({ token, user }) => {
+
+      jwt: async ({ token, profile, account, user }) => {    
         if (user) {
+          //For OAuth
+          let userData = {}
+          if (account?.provider === "google") {
+            const googleAuthData = {
+              username: profile.name.replaceAll(" ", "_"),
+              email: profile.email,
+              // role: credentials?.role || "Host"
+            };
+            userData = await instance
+              .post("/auth/oauth-sign-in", googleAuthData)
+              .then((response) => {
+                //Add Refresh Token to Cookie
+                const cookies = response.headers.get("set-cookie");
+                res.setHeader("Set-Cookie", cookies);
+  
+                if (response.data.user) {
+                  user = {
+                    ...response.data.user,
+                    accessToken: response.data.accessToken,
+                  };
+                  return user;
+                } else {
+                  return {};
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                return {};
+              });
+          }
+
+          user = {...user,...userData}
           token.id = user.id;
           token.user = user;
         }
@@ -58,15 +94,10 @@ const nextAuthOptions = (req, res) => {
         return session;
       },
     },
-    // secret: process.env.JWT_SECRET,
     session: {
       // strategy: "jwt",
       maxAge: 1 * 24 * 60 * 60, // 1day
     },
-    // jwt: {
-    //   secret: process.env.JWT_SECRET,
-    //   encryption: true,
-    // },
   };
 };
 
