@@ -1,5 +1,5 @@
 "use client";
-import instance from "@lib/axios";
+import instance from "@/lib/axios";
 import { useSession, signOut } from "next-auth/react";
 
 export const useRefreshToken = () => {
