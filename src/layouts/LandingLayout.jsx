@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "@/components/common/Navbar";
 
 const LandingLayout = ({ children }) => {
-  return <main>{children}</main>;
+  return (
+    <main>
+      <Navbar />
+      {children}
+    </main>
+  );
 };
 
 // LandingLayout.auth = false;
