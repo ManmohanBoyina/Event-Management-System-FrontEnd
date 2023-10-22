@@ -58,35 +58,35 @@ const SignIn = () => {
             <section>
                 {/* sign-in page below */}
                 <title>Customer Sign In</title>
-                <h1 class="text-4xl p-2">GameOn</h1>
-                <div class="pt-12 flex items-center justify-start h-screen flex-col">
-                    <div class="flex flex-col">
-                        <h2 class="text-4xl font-bold mb-12 text-left">Sign In!</h2>
+                <h1 className="text-4xl p-2">GameOn</h1>
+                <div className="pt-12 flex items-center justify-start h-screen flex-col">
+                    <div className="flex flex-col">
+                        <h2 className="text-4xl font-bold mb-12 text-left">Sign In!</h2>
                     </div>
-                    <form class="flex flex-col" onSubmit={handleSubmit}>
+                    <form className="flex flex-col" onSubmit={handleSubmit}>
 
-                        <label class="font-bold" htmlFor="email">Email: </label>
-                        <input class="border border-black rounded-md m-1 p-1 w-80" type="text" id="email" placeholder="Enter email" ref={userRef} onChange={(e) => setEmail(e.target.value)} value={email} required />
-                        <label class="font-bold" htmlFor="password">Password: </label>
-                        <input class="border border-black rounded-md m-1 p-1 w-80" type="password" id="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} value={password} required />
-                        <a class="font-bold text-blue-700 hover:text-blue-800 hover:underline active:text-blue-900 text-right" href="#">Forgot Password?</a>
+                        <label className="font-bold" htmlFor="email">Email: </label>
+                        <input className="border border-black rounded-md m-1 p-1 w-80" type="text" id="email" placeholder="Enter email" ref={userRef} onChange={(e) => setEmail(e.target.value)} value={email} required />
+                        <label className="font-bold" htmlFor="password">Password: </label>
+                        <input className="border border-black rounded-md m-1 p-1 w-80" type="password" id="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} value={password} required />
+                        <a className="font-bold text-blue-700 hover:text-blue-800 hover:underline active:text-blue-900 text-right" href="#">Forgot Password?</a>
 
 
-                        <button class="text-white w-80 m-1 mt-10 p-1 bg-blue-700 hover:bg-blue-800 active:bg-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Sign In</button>
+                        <button className="text-white w-80 m-1 mt-10 p-1 bg-blue-700 hover:bg-blue-800 active:bg-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Sign In</button>
                     </form>
 
-                    <div class="flex items-center justify-center m-.5">
-                        <div class="text-gray-500 font-semibold mb-1">OR</div>
+                    <div className="flex items-center justify-center m-.5">
+                        <div className="text-gray-500 font-semibold mb-1">OR</div>
                     </div>
 
-                    <div class="border border-black rounded-md m-1 p-1 w-80 font-bold flex flex-row justify-center hover:bg-gray-200 active:bg-gray-300">
-                        <img class src="/icons/google-icon.svg" height="20" width="20" />
-                        <button class="pl-3"
+                    <div className="border border-black rounded-md m-1 p-1 w-80 font-bold flex flex-row justify-center hover:bg-gray-200 active:bg-gray-300">
+                        <img className src="/icons/google-icon.svg" height="20" width="20" />
+                        <button className="pl-3"
                             onClick={() => { signIn('google', { role: "Customer" }) }}
                         >Sign in with google</button>
                     </div>
 
-                    <p class="mt-10 m-1 p-1 font-bold">Don't have an account yet? <a class="text-blue-700 hover:text-blue-800 hover:underline active:text-blue-900" href="sign-up">Sign Up</a></p>
+                    <p className="mt-10 m-1 p-1 font-bold">Don't have an account yet? <a className="text-blue-700 hover:text-blue-800 hover:underline active:text-blue-900" href="sign-up">Sign Up</a></p>
                 </div>
             </section>
 
