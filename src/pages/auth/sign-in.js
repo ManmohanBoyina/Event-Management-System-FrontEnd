@@ -58,7 +58,7 @@ const SignIn = () => {
             <section>
                 {/* sign-in page below */}
                 <title>Customer Sign In</title>
-                <h1 className="text-4xl p-2">GameOn</h1>
+                {/* <h1 className="text-4xl p-2">GameOn</h1> */}
                 <div className="pt-12 flex items-center justify-start h-screen flex-col">
                     <div className="flex flex-col">
                         <h2 className="text-4xl font-bold mb-12 text-left">Sign In!</h2>
